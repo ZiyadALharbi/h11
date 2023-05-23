@@ -1,25 +1,22 @@
-import 'dart:convert';
-
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:shelf/shelf.dart';
 
 import '../../Services/Supabase/SupabaseEnv.dart';
 
-deleteContactResponse(Request req, int idcontact) async {
-  final body = json.decode(await req.readAsString());
+deleteContactResponse(Request req, String id) async {
   final jwt = JWT.decode(req.headers["authorization"]!);
-  final userAuth = jwt.payload["sub"];
+
   final supabase = SupabaseEnv().supabase;
+  final listUser = await supabase
+      .from("users1")
+      .select("id")
+      .eq("id_auth", jwt.payload["sub"]);
 
-  final result =
-      await supabase.from("users1").select("id").eq("id_auth", userAuth);
+  await supabase
+      .from("contact1")
+      .delete()
+      .eq("id_user", listUser[0]["id"])
+      .eq("id", int.parse(id));
 
-  final resultContact =
-      await supabase.from("contact1").select().eq("id_user", result[0]["id"]);
-  supabase.from("contact1").delete().match(body["platform"]);
-
-  return Response.ok(
-    json.encode(resultContact),
-    headers: {"content-type": "application/json"},
-  );
+  return Response.ok(jwt.payload["sub"]);
 }
