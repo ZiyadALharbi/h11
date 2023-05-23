@@ -16,11 +16,9 @@ class UserRoute {
       ..post('/delete-contact', deleteContactResponse)
       ..get('/profile', displayProfileResponse)
       ..post('/add_contact', addContactResponse)
-<<<<<<< HEAD
-      ..post('/edit_profile', EditUserProfileResponse);
-=======
+      ..post('/edit_profile', editUserProfileResponse);
       ..post("/display-contact", displayContactUserResponse);
->>>>>>> caa8113352ab80412ac9e8240c83dcba50835175
+
 
     final pipline =
         Pipeline().addMiddleware(checkTokenMiddleware()).addHandler(router);
