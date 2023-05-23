@@ -12,7 +12,7 @@ class UserRoute {
 <<<<<<< HEAD
       ..get("/user-display", userDisplayResponse)
       ..post('/delete-contact', deleteContactResponse)
-      ..get('/profile', displayProfileResponse);
+      ..get('/profile', displayProfileResponse)..post('/add_contact', addContactResponse);
 =======
     ..get("/user-display/<id>", userDisplayResponse)
     ..post('/delete-contact', deleteContactResponse);
