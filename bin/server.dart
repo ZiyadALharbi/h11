@@ -16,7 +16,7 @@ Future<HttpServer> createServer() async {
   final handler =
       Pipeline().addMiddleware(logRequests()).addHandler(BaseRoute().handler);
   final server = await serve(handler, BaseEnv().ip, BaseEnv().port);
-  print('Server listening on port http://${server.address.host}:${server.port}');
+  print('Server listening on port ${server.port}');
 
   return server;
 }

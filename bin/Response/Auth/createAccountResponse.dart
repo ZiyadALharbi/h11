@@ -17,19 +17,19 @@ createAccountResponse(Request req) async {
     );
 
     UserModel userObject = UserModel(
-        email: userInfo.user!.email!,
-        idAuth: userInfo.user!.id,
-        name: body["name"],
-        username: body["username"],);
-    
-     await auth.signInWithOtp(email: body['email']);
-     await SupabaseEnv().supabase.from("users1").insert(userObject.toMap());
+      email: userInfo.user!.email!,
+      idAuth: userInfo.user!.id,
+      name: body["name"],
+      username: body["username"],
+    );
 
-     return CustomResponse().successResponse(
+    await auth.signInWithOtp(email: body['email']);
+    await SupabaseEnv().supabase.from("users1").insert(userObject.toMap());
+
+    return CustomResponse().successResponse(
       msg: "Account created successfully!",
       data: {"email": body['email'], "username": body['username']},
     );
-
   } catch (error) {
     print(error);
 
