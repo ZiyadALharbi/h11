@@ -4,7 +4,6 @@ import '../../Services/Supabase/SupabaseEnv.dart';
 
 userDisplayResponse(Request _, String id)async{
   try{
-
     final supabase = SupabaseEnv().supabase;
     
      final user = (await supabase
