@@ -10,7 +10,7 @@ import '../Response/User/userDisplayResponse.dart';
 class UserRoute {
   Handler get handler {
     final router = Router()
-    ..get("/user-display", userDisplayResponse)
+    ..get("/user-display/<id>", userDisplayResponse)
     ..post('/delete-contact', deleteContactResponse);
     final pipline =
         Pipeline().addMiddleware(checkTokenMiddleware()).addHandler(router);
