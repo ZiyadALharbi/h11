@@ -18,5 +18,5 @@ addContactResponse(Request req) async {
 
   await supabase.from("contact1").upsert({"id_user": iduser, ...body});
 
-  return Response.ok(iduser.toString());
+  return Response.ok("Contact added successfully!");
 }

@@ -12,7 +12,7 @@ userDisplayResponse(Request _, String id)async{
       .eq("id", int.parse(id)))[0];
 
       final contact =
-      await supabase.from("contact").select().eq("id_user", user["id"]);
+      await supabase.from("contact1").select().eq("id_user", user["id"]);
 
       Map userMap = {...user, "contact": contact};
 

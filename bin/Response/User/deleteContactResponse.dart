@@ -12,11 +12,7 @@ deleteContactResponse(Request req, String id) async {
       .select("id")
       .eq("id_auth", jwt.payload["sub"]);
 
-  await supabase
-      .from("contact1")
-      .delete()
-      .eq("id_user", listUser[0]["id"])
-      .eq("id", int.parse(id));
+  await supabase.from("contact1").delete().eq("id", int.parse(id));
 
-  return Response.ok(jwt.payload["sub"]);
+  return Response.ok("Contact deleted successfully!");
 }

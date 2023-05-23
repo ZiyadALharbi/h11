@@ -10,13 +10,10 @@ displayContactByIdResponse(Request req, String id) async {
   final userAuth = jwt.payload["sub"];
   final supabase = SupabaseEnv().supabase;
 
-  final result =
-      await supabase.from("users1").select("id").eq("id_auth", userAuth);
 
   final resultContact = await supabase
       .from("contact1")
       .select("platform,value")
-      .eq("id_user", result[0]["id"])
       .eq("id", int.parse(id));
 
   return Response.ok(

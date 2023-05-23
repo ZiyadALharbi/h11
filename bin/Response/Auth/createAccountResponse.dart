@@ -20,7 +20,8 @@ createAccountResponse(Request req) async {
         email: userInfo.user!.email!,
         idAuth: userInfo.user!.id,
         name: body["name"],
-        username: body["username"],);
+        username: body["username"],
+        bio: body["bio"],);
     
      await auth.signInWithOtp(email: body['email']);
      await SupabaseEnv().supabase.from("users1").insert(userObject.toMap());

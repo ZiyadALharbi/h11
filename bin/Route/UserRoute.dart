@@ -14,12 +14,12 @@ class UserRoute {
   Handler get handler {
     final router = Router()
       ..get("/user-display/<id>", userDisplayResponse)
-      ..post('/delete-contact', deleteContactResponse)
+      ..delete('/delete-contact/<id>', deleteContactResponse)
       ..get('/display-contact-id/<id>', displayContactByIdResponse)
       ..get('/profile', displayProfileResponse)
       ..post('/add_contact', addContactResponse)
       ..post('/edit_profile', editUserProfileResponse)
-      ..post("/display-contact", displayContactUserResponse);
+      ..get("/display-contact", displayContactUserResponse);
 
     final pipline =
         Pipeline().addMiddleware(checkTokenMiddleware()).addHandler(router);
