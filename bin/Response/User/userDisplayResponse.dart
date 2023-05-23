@@ -1,20 +1,18 @@
 import 'dart:convert';
 
-import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:shelf/shelf.dart';
 
 import '../../Services/Supabase/SupabaseEnv.dart';
 
-userDisplayResponse(Request req)async{
+userDisplayResponse(Request _, String id)async{
   try{
-    final jwt = JWT.decode(req.headers["authorization"]!);
-    
+
     final supabase = SupabaseEnv().supabase;
     
      final user = (await supabase
       .from("users1")
       .select()
-      .eq("id_auth", jwt.payload["sub"]))[0];
+      .eq("id", int.parse(id)))[0];
 
       final contact =
       await supabase.from("contact").select().eq("id_user", user["id"]);
